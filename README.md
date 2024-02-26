@@ -6,8 +6,7 @@ Here we provide a workflow, including individual tree segmentation of Unmanned A
 
 ---
 
-Individual tree segmentation of UAV and backpack lidar data 
-===
+## Individual tree segmentation of UAV and backpack lidar data 
 
 ### 1. Individual tree segmentation of UAV lidar data
 
@@ -59,15 +58,14 @@ pcoTreeSegmentation.outputToCSV(myFilePath);
 
 * * * 
 
-Fusion of multiplatform lidar data based on tree locations
-===
+## Fusion of multiplatform lidar data based on tree locations
+
 Based on the individual tree segmentation results from both UAV and backpack lidar, data fusion is performed based on tree locations, with the main program being `\registration\registration_no_GUI.cpp`. This program contains detailed code comments, allowing users to adjust parameters according to their own data.
 In the `Test data` folder, there are test datasets, including `backpack.las` and `UAV.las` for lidar data. `B_tree` and `U_tree` represent tree location data from backpack and UAV data sources, respectively.
 
 ----
 
-Reference
-===
+## Reference
 
 Guan, H.C., Su, Y.J., Hu, T.Y., Wang, R., Ma, Q., Yang, Q.L., Sun, X.L., Li, Y.M., Jin, S.C., Zhang, J., Liu, M., Wu, F.Y. & Guo, Q.H. (2020) A Novel Framework to Automatically Fuse 		Multiplatform LiDAR Data in Forest Environments Based on Tree Locations. IEEE Transactions on Geoscience and Remote Sensing, 58, 2165-2177.
 
