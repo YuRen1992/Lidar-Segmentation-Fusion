@@ -63,7 +63,7 @@ pcoTreeSegmentation.outputToCSV(myFilePath);
 ## Fusion of multiplatform lidar data based on tree locations
 
 Based on the individual tree segmentation results from both UAV and backpack lidar, data fusion is performed based on tree locations, with the main program being `\registration\registration_no_GUI.cpp`. This program contains detailed code comments, allowing users to adjust parameters according to their own data.
-In the `Test data` folder, there are test datasets, including `backpack.las` and `UAV.las` for lidar data. `B_tree` and `U_tree` represent tree location data from backpack and UAV data sources, respectively.
+In the `Test data.zip` file, there are test datasets, including `backpack.las` and `UAV.las` for lidar data. `B_tree` and `U_tree` represent tree location data from backpack and UAV data sources, respectively.
 
 ----
 
