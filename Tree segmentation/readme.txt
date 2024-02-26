@@ -1,4 +1,4 @@
-1.机载算法调用接口在 PointCloudTreeSegmentation.h （注释含示例）
-2.地基算法调用接口在 PointCloudTreeSegmentationTLS.h（注释含示例）
-3.main.cpp 中含有两个简单的调用示例。
-4.机载算法调用之前建议抽稀。
+1.The invocation interface of individual tree segmentation algorithm of UAV/airborne is in PointCloudTreeSegmentationUAV.h (comments include examples).
+2.The invocation interface of individual tree segmentation algorithm of Backpack/TLS is in PointCloudTreeSegmentationBackpack.h (comments include examples).
+3. main.cpp contains two simple invocation examples.
+4. It is recommended to thin out before invoking the individual tree segmentation algorithm of UAV/airborne
