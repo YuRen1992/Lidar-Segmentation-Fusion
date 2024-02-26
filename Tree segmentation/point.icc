@@ -1,0 +1,260 @@
+#ifndef __POINT_ICC__
+#define __POINT_ICC__
+
+#include <cmath>
+/**
+ *  @file
+ *  @brief Implementation of a 3D point.      
+ *
+ *  Representation of a 3D point.
+ *  Only inline functions are used, therefore no .cc file.
+ *
+ *  @author Kai Lingemann. Inst. of CS, University of Osnabrueck, Germany.
+ *  @author Andreas Nuechter. Inst of CS, University of Osnabrueck, Germany.
+ **/
+
+/**
+ * Default constructor
+ */
+inline Point::Point()
+{
+  x = y = z = 0.0;
+  point_id = 0;
+  type = 0;
+  reflectance = 0.0;
+  temperature = 0.0;
+  amplitude = 0.0;
+  deviation = 0.0;
+  rgb[0] = 255; rgb[1] = 255; rgb[2] = 255;
+  nx = 1.0; ny = nz = 0.0;
+}
+
+/**
+ * Copy constructor
+ */
+inline Point::Point(const Point& p)
+{
+  x = p.x;
+  y = p.y;
+  z = p.z;
+  nx = p.nx;
+  ny = p.ny;
+  nz = p.nz;
+  type = p.type;
+  point_id = p.point_id;
+  reflectance = p.reflectance;
+  temperature = p.temperature;
+  amplitude = p.amplitude;
+  deviation = p.deviation;
+  rgb[0] = p.rgb[0];
+  rgb[1] = p.rgb[1];
+  rgb[2] = p.rgb[2];
+}
+
+/**
+  *	Constructor with an array, i.e., vecctor of coordinates
+  */
+inline Point::Point(const double *p)
+{
+  x = p[0];
+  y = p[1];
+  z = p[2];
+  nx = 1.0; ny = nz = 0.0;
+  type = 0;
+  reflectance = 0.0;
+  temperature = 0.0;
+  amplitude = 0.0;
+  deviation = 0.0;
+  rgb[0] = 255;
+  rgb[1] = 255;
+  rgb[2] = 255;
+};
+
+inline Point::Point(const double *p, const char *c)
+{
+  x = p[0]; y = p[1]; z = p[2];
+  nx = 1.0; ny = nz = 0.0;
+  type = 0;
+  reflectance = 0.0;
+  temperature = 0.0;
+  amplitude = 0.0;
+  deviation = 0.0;
+  rgb[0] = c[0];
+  rgb[1] = c[1];
+  rgb[2] = c[2];
+}
+
+/**
+ *	Constructor with three double values
+ */
+inline Point::Point(const double _x, const double _y, const double _z)
+{
+  x = _x;
+  y = _y;
+  z = _z;
+  nx = 1.0; ny = nz = 0.0;
+  type = 0;
+  reflectance = 0.0;
+  temperature = 0.0;
+  amplitude = 0.0;
+  deviation = 0.0;
+  rgb[0] = 255;
+  rgb[1] = 255;
+  rgb[2] = 255;
+}
+
+/**
+ *	Constructor with three double values
+ */
+inline Point::Point(const double _x, const double _y, const double _z,
+				const double _nx, const double _ny, const double _nz)
+{
+  nx = _nx;
+  ny = _ny;
+  nz = _nz;
+  x = _x;
+  y = _y;
+  z = _z;
+  type = 0;
+  reflectance = 0.0;
+  temperature = 0.0;
+  amplitude = 0.0;
+  deviation = 0.0;
+  rgb[0] = 255;
+  rgb[1] = 255;
+  rgb[2] = 255;
+}
+
+inline Point::Point(const double _x, const double _y, const double _z,
+				const char _r, const char _g, const char _b)
+{
+  x = _x;
+  y = _y;
+  z = _z;
+  nx = 1.0; ny = nz = 0.0;
+  type = 0;
+  reflectance = 0.0;
+  temperature = 0.0;
+  amplitude = 0.0;
+  deviation = 0.0;
+  rgb[0] = _r;
+  rgb[1] = _g;
+  rgb[2] = _b;
+}
+
+inline Point Point::operator+(const Point &p) const
+{
+  Point res;
+  res.x = x + p.x;
+  res.y = y + p.y;
+  res.z = z + p.z;
+  return res;
+};
+
+inline Point Point::operator-(const Point &p) const
+{
+  Point res;
+  res.x = x - p.x;
+  res.y = y - p.y;
+  res.z = z - p.z;
+  return res;
+};
+
+inline Point& Point::operator-=(const Point &p) 
+{
+  x -= p.x;
+  y -= p.y;
+  z -= p.z;
+  return *this;
+};
+
+inline Point& Point::operator+=(const Point &p)
+{
+  x += p.x;
+  y += p.y;
+  z += p.z;
+  return *this;
+};
+
+inline bool Point::operator!=(const Point &p) const
+{
+  // check all properties except point_id
+  return (x != p.x) || (y != p.y) || (z != p.z)
+      || (nx != p.nx) || (ny != p.ny) || (nz != p.nz)
+      || (type != p.type)
+      || (reflectance != p.reflectance)
+      || (temperature != p.temperature)
+      || (amplitude != p.amplitude)
+      || (deviation != p.deviation)
+      || (rgb[0] != p.rgb[0])
+      || (rgb[1] != p.rgb[1])
+      || (rgb[2] != p.rgb[2]);
+}
+
+inline bool Point::operator==(const Point &p) const
+{
+  // check all properties except point_id
+  return (x == p.x) && (y == p.y) && (z == p.z)
+      && (nx == p.nx) && (ny == p.ny) && (nz == p.nz)
+      && (type == p.type)
+      && (reflectance == p.reflectance)
+      && (temperature == p.temperature)
+      && (amplitude == p.amplitude)
+      && (deviation == p.deviation)
+      && (rgb[0] == p.rgb[0])
+      && (rgb[1] == p.rgb[1])
+      && (rgb[2] == p.rgb[2]);
+}
+
+/**
+ *  Overridden "<<" operator for sending a point to a stream
+ */
+inline ostream& operator<<(ostream& os, const Point& p) {
+  os << p.x << " " << p.y << " " << p.z << " (";
+  os << p.nx << " " << p.ny << " " << p.nz << " ";
+  os << (int)p.rgb[0] << " " << (int)p.rgb[1] << " " << (int)p.rgb[2] << ")";
+  return os;
+}
+
+/**
+ *  Overridden ">>" operator for reading a point from a stream.
+ *  Throws a runtime error if not enough data in the stream.
+ */
+inline istream& operator>>(istream& is, Point& p) {
+  if (!is.good()) throw runtime_error("Not enough elements to read for >>(istream&, Point).1");
+  is >> p.x;
+  if (!is.good()) throw runtime_error("Not enough elements to read for >>(istream&, Point).2");
+  is >> p.y;
+  if (!is.good()) throw runtime_error("Not enough elements to read for >>(istream&, Point).3");
+  is >> p.z;
+  return is;
+}
+
+/**
+  * Transforms a point by the given transformation.
+  * @param *alignxf The transformation (4x4 matrix)
+  */
+inline void Point::transform(const double *alignxf)
+{
+  double x_neu, y_neu, z_neu;
+  x_neu = x * alignxf[0] + y * alignxf[4] + z * alignxf[8];
+  y_neu = x * alignxf[1] + y * alignxf[5] + z * alignxf[9];
+  z_neu = x * alignxf[2] + y * alignxf[6] + z * alignxf[10];
+  x = x_neu + alignxf[12];
+  y = y_neu + alignxf[13];
+  z = z_neu + alignxf[14];
+}
+
+/**
+  * Calculates the difference between two points.
+  * @param p The second point
+  */
+
+inline double Point::distance(const Point &p)
+{
+  double distance;
+  distance = (p.x - x)*(p.x - x) + (p.y - y)*(p.y - y) + (p.z - z)*(p.z - z);
+  return sqrt(distance);
+}
+
+#endif

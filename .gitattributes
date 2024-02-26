@@ -1,0 +1,4 @@
+Tree[[:space:]]segmentation filter=lfs diff=lfs merge=lfs -text
+LICENSE filter=lfs diff=lfs merge=lfs -text
+README.md filter=lfs diff=lfs merge=lfs -text
+Test[[:space:]]data.zip filter=lfs diff=lfs merge=lfs -text
